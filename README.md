@@ -1,5 +1,5 @@
 ### React Core
-This repository holds both the logic on the react and react-native plugin.
+This repository holds both the logic on the react and the react-native plugin.
 
 ### Recursively clone a repository
 React
