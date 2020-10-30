@@ -3,7 +3,7 @@ import DOMpurify from "isomorphic-dompurify";
 export const sanitizeContent = (data, props) => {
   const sanitizedContent = DOMpurify.sanitize(data.content);
   const chunk = { ...data, content: sanitizedContent };
-  const tokens = chunk.content.match(/\{{(.*?)\}}/g).map(t => t.substr(2, t.length-4))
+  const tokens = (chunk.content.match(/\{{(.*?)\}}/g)|| []).map(t => t.substr(2, t.length-4))
   
   let parsedChunk = chunk.content;
 
