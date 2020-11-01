@@ -6,6 +6,7 @@ export const sanitizeContent = (data, props) => {
   const tokens = (chunk.content.match(/\{{(.*?)\}}/g)|| []).map(t => t.substr(2, t.length-4))
   
   let parsedChunk = chunk.content;
+   const tokens = (chunk.content.match(/\{{(.*?)\}}/g)|| []).map(t => t.substr(2, t.length-4))
 
   if (tokens) {
     tokens.forEach(function(token) {
