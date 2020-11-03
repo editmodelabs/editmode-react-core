@@ -1,4 +1,5 @@
 import React from "react";
+import { Text, Image } from "react-native";
 import { sanitizeContent } from './'
 
 export const renderChunk = (data, props) => {
@@ -15,20 +16,20 @@ export const renderChunk = (data, props) => {
   switch (chunk.chunk_type) {
     case "single_line_text":
     case "long_text":
-      return (<em-span
+      return (<Text
         {...defaultprops}
         dangerouslySetInnerHTML={{__html: parsedChunk}}
         {...props}
       />);
     case "rich_text":
-      return (<em-span
+      return (<Text
         {...defaultprops}
         class="editmode-richtext-editor"
         dangerouslySetInnerHTML={{__html: parsedChunk}}
         {...props}
       />);
     case "image":
-      return (<img
+      return (<Image
         {...defaultprops}
         src={chunk.content}
         data-chunk-editable={false}
@@ -36,6 +37,6 @@ export const renderChunk = (data, props) => {
         {...props}
       />);
     default:
-      return <span {...props}>{parsedChunk}</span>;
+      return <Text {...props}>{parsedChunk}</Text>;
   }
 };
