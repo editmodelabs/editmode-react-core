@@ -31,7 +31,7 @@ export const renderChunk = (data, props) => {
     case "image":
       return (<Image
         {...defaultprops}
-        src={chunk.content}
+        source={chunk.content}
         data-chunk-editable={false}
         alt=""
         {...props}
