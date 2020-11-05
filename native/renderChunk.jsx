@@ -18,20 +18,18 @@ export const renderChunk = (data, props) => {
     case "long_text":
       return (<Text
         {...defaultprops}
-        dangerouslySetInnerHTML={{__html: parsedChunk}}
         {...props}
-      />);
+      >{parsedChunk}</Text>);
     case "rich_text":
       return (<Text
         {...defaultprops}
         class="editmode-richtext-editor"
-        dangerouslySetInnerHTML={{__html: parsedChunk}}
         {...props}
-      />);
+      >{parsedChunk}</Text>);
     case "image":
       return (<Image
         {...defaultprops}
-        source={chunk.content}
+        source={"http:" + chunk.content}
         data-chunk-editable={false}
         alt=""
         {...props}
