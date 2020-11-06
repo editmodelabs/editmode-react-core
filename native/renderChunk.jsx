@@ -1,9 +1,11 @@
 import React from "react";
-import { Text, Image } from "react-native";
+import { Text, Image, Dimensions } from "react-native";
 import { sanitizeContent } from './'
 
 export const renderChunk = (data, props) => {
   const { chunk, parsedChunk } = sanitizeContent(data, props)
+  const imageHeight = props.imageHeight ? props.imageHeight : 50;
+  const imageWidth = props.imageWidth ? props.imageWidth : 50;
 
   const defaultprops = {
     "data-chunk": chunk.identifier,
@@ -30,8 +32,8 @@ export const renderChunk = (data, props) => {
       return (<Image
         {...defaultprops}
         source={{uri:`http:${chunk.content}`}}
+        style={{ height: imageHeight, width: imageWidth }}
         data-chunk-editable={false}
-        alt=""
         {...props}
       />);
     default:
