@@ -7,8 +7,7 @@ export const sanitizeContent = (data, props) => {
   if (tokens) {
     tokens.forEach(function(token) {
       const value = props.variables && props.variables[token] || ""
-      const emVar = `<em-var data-chunk-variable="${token}" data-chunk-variable-value="${value}">${value}</em-var>`
-      parsedChunk = parsedChunk.replace(`{{${token}}}`, emVar);
+      parsedChunk = parsedChunk.replace(`{{${token}}}`, value);
     });
   }
 
