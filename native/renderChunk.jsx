@@ -1,9 +1,7 @@
 import React from "react";
 import { Text, Image, Dimensions } from "react-native";
-import { sanitizeContent } from './'
 
-export const renderChunk = (data, props) => {
-  const { chunk, parsedChunk } = sanitizeContent(data, props)
+export const renderChunk = (chunk, props) => {
   const imageHeight = props.imageHeight ? props.imageHeight : 50;
   const imageWidth = props.imageWidth ? props.imageWidth : 50;
 
@@ -21,13 +19,13 @@ export const renderChunk = (data, props) => {
       return (<Text
         {...defaultprops}
         {...props}
-      >{parsedChunk}</Text>);
+      >{chunk.content}</Text>);
     case "rich_text":
       return (<Text
         {...defaultprops}
         class="editmode-richtext-editor"
         {...props}
-      >{parsedChunk}</Text>);
+      >{chunk.content}</Text>);
     case "image":
       return (<Image
         {...defaultprops}
@@ -37,6 +35,6 @@ export const renderChunk = (data, props) => {
         {...props}
       />);
     default:
-      return <Text {...props}>{parsedChunk}</Text>;
+      return <Text {...props}>{chunk.content}</Text>;
   }
 };
