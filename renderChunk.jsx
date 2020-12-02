@@ -1,8 +1,7 @@
 import React from "react";
 import { sanitizeContent } from './'
-import ReactHtmlParser from 'react-html-parser';
 
-export const renderChunk = (data, Tag, props, textOnly = false) => {
+export const renderChunk = (data, props) => {
   const { chunk, parsedChunk } = sanitizeContent(data, props)
 
   const defaultprops = {
@@ -13,29 +12,21 @@ export const renderChunk = (data, Tag, props, textOnly = false) => {
     "key": chunk.identifier
   }
 
-  if (textOnly) {
-    return parsedChunk
-  }
-
-  if (Tag == 'input') {
-    return <input 
-      placeholder={parsedChunk}
-      {...props} 
-    />
-  }
-
   switch (chunk.chunk_type) {
     case "single_line_text":
     case "long_text":
-      return (<Tag
+      return (<em-span
         {...defaultprops}
+        dangerouslySetInnerHTML={{__html: parsedChunk}}
         {...props}
-      >{ReactHtmlParser(parsedChunk)}</Tag>);
+      />);
     case "rich_text":
-      return (<Tag
+      return (<em-span
         {...defaultprops}
+        class="editmode-richtext-editor"
+        dangerouslySetInnerHTML={{__html: parsedChunk}}
         {...props}
-      >{ReactHtmlParser(parsedChunk)}</Tag>);
+      />);
     case "image":
       return (<img
         {...defaultprops}
